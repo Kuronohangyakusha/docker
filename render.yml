@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: appdaf-web
+    env: php
+    buildCommand: composer install --no-dev --optimize-autoloader
+    startCommand: php -S 0.0.0.0:$PORT -t public/
+    envVars:
+      - key: DSN
+        value: pgsql:host=<DB_HOST>;port=5432;dbname=<DB_NAME>
+      - key: DB_USER
+        fromDatabase:
+          name: appdaf-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: appdaf-db
+          property: password
+      - key: DOCKER_ENV
+        value: "false"
+
+databases:
+  - name: appdaf-db
+    databaseName: gestion_auchan
+    user: postgres

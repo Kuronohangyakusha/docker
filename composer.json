@@ -18,13 +18,18 @@
             "email": "gueyeprophete287@gmail.com"
         }
     ],
+    
     "require": {
-        "vlucas/phpdotenv": "^5.6",
-        "twilio/sdk": "^8.6"
+        "php": "^8.1",
+        "vlucas/phpdotenv": "^5.4",
+        "ext-pdo": "*",
+        "ext-pgsql": "*",
+        "cloudinary/cloudinary_php": "^3.1"
     },
     "scripts": {
-      "database:migrate": "php migrations/Migration.php",
-      "database:seed": "php seeders/Seeder.php"
-
+        "post-install-cmd": [
+            "php migrations/Migration.php",
+            "php seeders/Seeder.php"
+        ]
     }
 }
